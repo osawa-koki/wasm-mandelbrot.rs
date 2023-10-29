@@ -1,3 +1,10 @@
+/target
+**/*.rs.bk
+Cargo.lock
+bin/
+pkg/
+wasm-pack.log
+
 # Created by https://www.toptal.com/developers/gitignore/api/windows,macos,linux,rust,node,visualstudiocode,vim
 # Edit at https://www.toptal.com/developers/gitignore?templates=windows,macos,linux,rust,node,visualstudiocode,vim
 
