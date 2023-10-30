@@ -8,7 +8,7 @@
   },
   "scripts": {
     "build": "webpack --config webpack.config.js",
-    "start": "webpack-dev-server --port 8000 --open"
+    "start": "webpack-dev-server --port 8000"
   },
   "repository": {
     "type": "git",
