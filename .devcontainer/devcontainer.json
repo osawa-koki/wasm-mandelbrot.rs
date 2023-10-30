@@ -16,13 +16,24 @@
   },
 
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
-  "forwardPorts": [],
+  "forwardPorts": [8000],
 
   // Uncomment the next line to run commands after the container is created.
   "postCreateCommand": "cat /etc/os-release && cargo --version && rustc --version && rustup --version && wasm-pack --version && node --version && yarn --version",
 
   // Configure tool-specific properties.
-  "customizations": {},
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "EditorConfig.EditorConfig",
+        "dbaeumer.vscode-eslint",
+        "GitHub.copilot",
+        "GitHub.copilot-chat",
+        "DavidAnson.vscode-markdownlint",
+        "rust-lang.rust-analyzer"
+      ]
+    }
+  },
 
   // Uncomment to connect as an existing user other than the container default. More info: https://aka.ms/dev-containers-non-root.
   "remoteUser": "root"
