@@ -12,38 +12,39 @@ on:
       - develop
       - issues/*
 
+env:
+  cargo-directory: ./
+  npm-directory: ./www/
+
 jobs:
-  npm-ci:
+  ci:
     runs-on: ubuntu-22.04
-    defaults:
-      run:
-        working-directory: ./www/
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
+    # ===== Cargo =====
+    - name: Install Rust toolchain
+      uses: dtolnay/rust-toolchain@stable
+    - name: Format
+      run: cargo fmt --all -- --check
+      working-directory: ${{ env.cargo-directory }}
+    - name: Lint
+      run: cargo clippy
+      working-directory: ${{ env.cargo-directory }}
+    - name: Build check
+      run: cargo check
+      working-directory: ${{ env.cargo-directory }}
+    # ===== npm =====
     - name: Setup Node.js
       uses: actions/setup-node@v2
       with:
         node-version: '18'
     - name: Install dependencies
-      run: mkdir ../pkg/ && yarn install
+      run: yarn install
+      working-directory: ${{ env.npm-directory }}
     - name: Lint
       run: yarn lint
+      working-directory: ${{ env.npm-directory }}
     - name: Type check
       run: yarn type-check
-  cargo-ci:
-    runs-on: ubuntu-22.04
-    defaults:
-      run:
-        working-directory: ./
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-    - name: Install Rust toolchain
-      uses: dtolnay/rust-toolchain@stable
-    - name: Format
-      run: cargo fmt --all -- --check
-    - name: Lint
-      run: cargo clippy
-    - name: Build check
-      run: cargo check
+      working-directory: ${{ env.npm-directory }}
