@@ -14,7 +14,7 @@ yarn install
 yarn start
 ```
 
-## メインプログラムの実行
+## 本番用実行
 
 ```shell
 docker build -t my-image .
