@@ -7,7 +7,7 @@
     "create-wasm-app": ".bin/create-wasm-app.js"
   },
   "scripts": {
-    "build": "webpack --config webpack.config.js",
+    "build": "webpack --config webpack.config.js && cp ./tako.png ./dist/",
     "start": "webpack-dev-server --port 8000"
   },
   "repository": {
