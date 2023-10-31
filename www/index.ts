@@ -2,6 +2,7 @@
 
 import { Space, HueOption } from 'wasm-mandelbrot-rs'
 import { memory } from 'wasm-mandelbrot-rs/wasm_mandelbrot_rs_bg'
+import { settings } from './settings'
 
 const widthElement = document.getElementById('width')! as HTMLInputElement
 const heightElement = document.getElementById('height')! as HTMLInputElement
@@ -27,7 +28,11 @@ const ctx = canvas.getContext('2d')!
 
 const space = Space.new()
 
-function draw (): void {
+async function draw (): Promise<void> {
+  buttonElement.disabled = true
+
+  await settings.waitLittle()
+
   const width = parseInt(widthElement.value)
   const height = parseInt(heightElement.value)
   const xMin = parseFloat(xMinElement.value)
@@ -77,6 +82,8 @@ function draw (): void {
     ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${a})`
     ctx.fillRect(x, y, 1, 1)
   })
+
+  buttonElement.disabled = false
 }
 
 buttonElement.addEventListener('click', draw)
