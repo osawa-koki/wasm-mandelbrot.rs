@@ -1,8 +1,5 @@
-// Bootstrapのスタイルシート側の機能を読み込む
-import 'bootstrap/dist/css/bootstrap.min.css'
-
-// BootstrapのJavaScript側の機能を読み込む
 import 'bootstrap'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 // A dependency graph that contains any wasm must all be imported
 // asynchronously. This `bootstrap.js` file does the single async import, so
