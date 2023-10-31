@@ -23,12 +23,6 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
     # ===== Cargo =====
-    - name: Restore cargo cache
-      id: cargo_bin_cache_id
-      uses: actions/cache@v2
-      with:
-        path: ~/.cargo/bin/
-        key: cargo-bin
     - name: Install Rust toolchain
       uses: dtolnay/rust-toolchain@stable
     - name: Format
@@ -40,7 +34,14 @@ jobs:
     - name: Build check
       run: cargo check
       working-directory: ${{ env.cargo-directory }}
+    - name: Restore cargo cache
+      id: cargo_bin_cache_id
+      uses: actions/cache@v2
+      with:
+        path: ~/.cargo/bin/
+        key: cargo-bin
     - name: Install cargo-generate and wasm-pack
+      if: steps.cargo_bin_cache_id.outputs.cache-hit != 'true'
       run: cargo install cargo-generate wasm-pack
       working-directory: ${{ env.cargo-directory }}
     - name: Build
