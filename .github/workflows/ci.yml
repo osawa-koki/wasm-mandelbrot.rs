@@ -23,6 +23,12 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
     # ===== Cargo =====
+    - name: Restore cargo cache
+      id: cargo_bin_cache_id
+      uses: actions/cache@v2
+      with:
+        path: ~/.cargo/bin/
+        key: cargo-bin
     - name: Install Rust toolchain
       uses: dtolnay/rust-toolchain@stable
     - name: Format
