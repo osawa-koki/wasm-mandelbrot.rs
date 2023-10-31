@@ -10,7 +10,8 @@
     "build": "yarn build:ts && yarn build:wp && cp ./tako.png ./dist/",
     "build:ts": "tsc",
     "build:wp": "webpack --config webpack.config.js",
-    "start": "webpack-dev-server --port 8000"
+    "start": "webpack-dev-server --port 8000",
+    "lint": "eslint --ext .ts ./"
   },
   "repository": {
     "type": "git",
