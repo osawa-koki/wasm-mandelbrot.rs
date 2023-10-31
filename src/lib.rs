@@ -23,6 +23,12 @@ pub struct Space {
     cells: Option<Vec<u32>>,
 }
 
+impl Default for Space {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 #[wasm_bindgen]
 impl Space {
     pub fn new() -> Space {
@@ -121,5 +127,5 @@ impl Space {
 }
 
 fn rgb_to_number(r: u32, g: u32, b: u32) -> u32 {
-    (r << 16) + (g << 8) + (b << 0)
+    (r << 16) + (g << 8) + b
 }
