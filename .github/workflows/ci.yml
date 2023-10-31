@@ -27,8 +27,6 @@ jobs:
         node-version: '18'
     - name: Install dependencies
       run: mkdir ../pkg/ && yarn install
-    - name: ls
-      run: ls
     - name: Lint
       run: yarn lint
     - name: Type check
