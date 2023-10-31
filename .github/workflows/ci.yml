@@ -45,8 +45,6 @@ jobs:
           toolchain: stable
           override: true
           components: rustfmt, clippy
-    - name: Install dependencies
-      run: cargo install --path ./
     - name: Format
       run: cargo fmt --all --check
     - name: Lint
