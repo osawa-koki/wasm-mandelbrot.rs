@@ -1,0 +1,17 @@
+/.devcontainer/
+/.github/
+/pkg/
+/target/
+/tests/
+_README.md
+.approveyor.yml
+.editorconfig
+.gitignore
+.travis.yml
+LICENSE
+LICENSE_APACHE
+LICENSE_MIT
+README.md
+
+/www/.bin/
+/www/node_modules/
