@@ -6,6 +6,52 @@
   </head>
   <body>
     <noscript>This page contains webassembly and javascript content, please enable javascript in your browser.</noscript>
+    <table>
+      <tbody>
+        <tr>
+          <th>width</th>
+          <td><input type="number" id="width" min="10" max="10000" step="10" /></td>
+        </tr>
+        <tr>
+          <th>height</th>
+          <td><input type="number" id="height" min="10" max="10000" step="10" /></td>
+        </tr>
+        <tr>
+          <th>x_min</th>
+          <td><input type="number" id="x_min" min="-10" max="10" step="0.1" /></td>
+        </tr>
+        <tr>
+          <th>x_max</th>
+          <td><input type="number" id="x_max" min="-10" max="10" step="0.1" /></td>
+        </tr>
+        <tr>
+          <th>y_min</th>
+          <td><input type="number" id="y_min" min="-10" max="10" step="0.1" /></td>
+        </tr>
+        <tr>
+          <th>y_max</th>
+          <td><input type="number" id="y_max" min="-10" max="10" step="0.1" /></td>
+        </tr>
+        <tr>
+          <th>Hue</th>
+          <td>
+            <select id="hue_option">
+              <option value="red">Red</option>
+              <option value="green">Green</option>
+              <option value="blue">Blue</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <th>max_iterations</th>
+          <td><input type="number" id="max_iterations" min="1" max="1000" step="1" /></td>
+        </tr>
+        <tr>
+          <td colspan="2"><button id="button">Draw</button></td>
+        </tr>
+      </tbody>
+    </table>
+    <hr />
     <canvas id="canvas"></canvas>
     <script src="./bootstrap.js"></script>
   </body>
