@@ -17,22 +17,54 @@ concurrency:
   group: 'pages'
   cancel-in-progress: true
 
+env:
+  cargo-directory: ./
+  npm-directory: ./www/
+
 jobs:
   build:
     runs-on: ubuntu-22.04
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-    - name: Build docker image
-      run: docker build -t my-image .
-    - name: Run docker container
-      run: docker run -d --name my-container my-image
-    - name: Copy artifact
-      run: docker cp my-container:/src/www/dist/ ./public/
+    # ===== Cargo =====
+    - name: Install Rust toolchain
+      uses: dtolnay/rust-toolchain@stable
+    - name: Restore cargo cache
+      id: cargo_bin_cache_id
+      uses: actions/cache@v2
+      with:
+        path: ~/.cargo/bin/
+        key: cargo-bin
+    - name: Install cargo-generate and wasm-pack
+      if: steps.cargo_bin_cache_id.outputs.cache-hit != 'true'
+      run: cargo install cargo-generate wasm-pack
+      working-directory: ${{ env.cargo-directory }}
+    - name: Build
+      run: wasm-pack build --release
+      working-directory: ${{ env.cargo-directory }}
+    # ===== npm =====
+    - name: Setup Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '18'
+    - name: Cache node_modules
+      id: node_modules_cache_id
+      uses: actions/cache@v2
+      with:
+        path: ${{ env.npm-directory }}node_modules/
+        key: node-modules-${{ hashFiles('./**/package.json', './**/yarn.lock') }}
+    - name: Install dependencies
+      if: steps.node_modules_cache_id.outputs.cache-hit != 'true'
+      run: yarn install
+      working-directory: ${{ env.npm-directory }}
+    - name: Build
+      run: yarn build
+      working-directory: ${{ env.npm-directory }}
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v2
       with:
-        path: ./public/
+        path: ${{ env.npm-directory }}dist/
   # Deployment job
   deploy:
     environment:
