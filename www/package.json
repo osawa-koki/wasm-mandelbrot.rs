@@ -6,12 +6,15 @@
   "bin": {
     "create-wasm-app": ".bin/create-wasm-app.js"
   },
+  "type": "module",
   "scripts": {
     "build": "yarn build:ts && yarn build:wp && cp ./tako.png ./dist/",
     "build:ts": "tsc",
     "build:wp": "webpack --config webpack.config.js",
     "start": "webpack-dev-server --port 8000",
-    "lint": "eslint --ext .ts ./"
+    "lint": "eslint --ext .ts ./",
+    "lint:fix": "eslint --ext .ts ./ --fix",
+    "type-check": "tsc --noEmit"
   },
   "repository": {
     "type": "git",

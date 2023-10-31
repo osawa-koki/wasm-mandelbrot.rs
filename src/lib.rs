@@ -23,6 +23,12 @@ pub struct Space {
     cells: Option<Vec<u32>>,
 }
 
+impl Default for Space {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 #[wasm_bindgen]
 impl Space {
     pub fn new() -> Space {
@@ -73,9 +79,7 @@ impl Space {
         self.hue_option = Some(hue_option);
         self.max_iterations = Some(max_iterations);
 
-        let cells = (0..width * height)
-            .map(|_| { 255 })
-            .collect();
+        let cells = (0..width * height).map(|_| 255).collect();
         self.cells = Some(cells);
     }
 
@@ -109,13 +113,13 @@ impl Space {
                 match hue_option {
                     HueOption::Red => {
                         cells[index] = rgb_to_number(i * 255 / max_iterations, 0, 0);
-                    },
+                    }
                     HueOption::Green => {
                         cells[index] = rgb_to_number(0, i * 255 / max_iterations, 0);
-                    },
+                    }
                     HueOption::Blue => {
                         cells[index] = rgb_to_number(0, 0, i * 255 / max_iterations);
-                    },
+                    }
                 }
             }
         }
@@ -123,5 +127,5 @@ impl Space {
 }
 
 fn rgb_to_number(r: u32, g: u32, b: u32) -> u32 {
-    (r << 16) + (g << 8) + (b << 0)
+    (r << 16) + (g << 8) + b
 }
