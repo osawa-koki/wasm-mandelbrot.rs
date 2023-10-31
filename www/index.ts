@@ -86,6 +86,7 @@ async function draw (): Promise<void> {
   buttonElement.disabled = false
 }
 
+// eslint-disable-next-line @typescript-eslint/no-misused-promises
 buttonElement.addEventListener('click', draw)
 
 /* eslint-enable @typescript-eslint/no-non-null-assertion */
