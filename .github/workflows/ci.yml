@@ -52,5 +52,5 @@ jobs:
       run: cargo fmt --all -- --check
     - name: Lint
       run: cargo clippy
-    - name: Type check
+    - name: Build check
       run: cargo check
