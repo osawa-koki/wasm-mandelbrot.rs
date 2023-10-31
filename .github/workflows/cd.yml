@@ -41,7 +41,7 @@ jobs:
       run: cargo install cargo-generate wasm-pack
       working-directory: ${{ env.cargo-directory }}
     - name: Build
-      run: wasm-pack build --release
+      run: wasm-pack build --release --target web --out-dir ./pkg/
       working-directory: ${{ env.cargo-directory }}
     # ===== npm =====
     - name: Setup Node.js
@@ -56,7 +56,7 @@ jobs:
         key: node-modules-${{ hashFiles('./**/package.json', './**/yarn.lock') }}
     - name: Install dependencies
       if: steps.node_modules_cache_id.outputs.cache-hit != 'true'
-      run: yarn install
+      run: yarn install --frozen-lockfile --non-interactive --production
       working-directory: ${{ env.npm-directory }}
     - name: Build
       run: yarn build
