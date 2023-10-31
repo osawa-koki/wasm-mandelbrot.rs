@@ -13,4 +13,15 @@ module.exports = {
       patterns: ["index.html"]
     })
   ],
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: [
+          "style-loader",
+          "css-loader"
+        ],
+      },
+    ],
+  },
 };
