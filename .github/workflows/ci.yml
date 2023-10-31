@@ -36,7 +36,7 @@ jobs:
       working-directory: ${{ env.cargo-directory }}
     - name: Restore cargo cache
       id: cargo_bin_cache_id
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       with:
         path: ~/.cargo/bin/
         key: cargo-bin
@@ -54,7 +54,7 @@ jobs:
         node-version: '18'
     - name: Cache node_modules
       id: node_modules_cache_id
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       with:
         path: ${{ env.npm-directory }}node_modules/
         key: node-modules-${{ hashFiles('./**/package.json', './**/yarn.lock') }}
