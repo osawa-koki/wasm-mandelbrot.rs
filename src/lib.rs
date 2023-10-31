@@ -73,9 +73,7 @@ impl Space {
         self.hue_option = Some(hue_option);
         self.max_iterations = Some(max_iterations);
 
-        let cells = (0..width * height)
-            .map(|_| { 255 })
-            .collect();
+        let cells = (0..width * height).map(|_| 255).collect();
         self.cells = Some(cells);
     }
 
@@ -109,13 +107,13 @@ impl Space {
                 match hue_option {
                     HueOption::Red => {
                         cells[index] = rgb_to_number(i * 255 / max_iterations, 0, 0);
-                    },
+                    }
                     HueOption::Green => {
                         cells[index] = rgb_to_number(0, i * 255 / max_iterations, 0);
-                    },
+                    }
                     HueOption::Blue => {
                         cells[index] = rgb_to_number(0, 0, i * 255 / max_iterations);
-                    },
+                    }
                 }
             }
         }
