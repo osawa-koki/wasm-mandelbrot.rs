@@ -40,7 +40,7 @@ jobs:
     - name: Build check
       run: cargo check
       working-directory: ${{ env.cargo-directory }}
-    - name: Install wasm-pack
+    - name: Install cargo-generate and wasm-pack
       run: cargo install cargo-generate wasm-pack
       working-directory: ${{ env.cargo-directory }}
     - name: Build
