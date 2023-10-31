@@ -1,27 +1,27 @@
 import { Space, HueOption } from "wasm-mandelbrot-rs";
 import { memory } from "wasm-mandelbrot-rs/wasm_mandelbrot_rs_bg";
 
-const widthElement = document.getElementById("width");
-const heightElement = document.getElementById("height");
-const xMinElement = document.getElementById("x_min");
-const xMaxElement = document.getElementById("x_max");
-const yMinElement = document.getElementById("y_min");
-const yMaxElement = document.getElementById("y_max");
-const hueOptionElement = document.getElementById("hue_option");
-const maxIterationsElement = document.getElementById("max_iterations");
-const buttonElement = document.getElementById("button");
+const widthElement = document.getElementById("width")! as HTMLInputElement;
+const heightElement = document.getElementById("height")! as HTMLInputElement;
+const xMinElement = document.getElementById("x_min")! as HTMLInputElement;
+const xMaxElement = document.getElementById("x_max")! as HTMLInputElement;
+const yMinElement = document.getElementById("y_min")! as HTMLInputElement;
+const yMaxElement = document.getElementById("y_max")! as HTMLInputElement;
+const hueOptionElement = document.getElementById("hue_option")! as HTMLInputElement;
+const maxIterationsElement = document.getElementById("max_iterations")! as HTMLInputElement;
+const buttonElement = document.getElementById("button")! as HTMLButtonElement;
 
-widthElement.value = 1000;
-heightElement.value = 1000;
-xMinElement.value = -2.0;
-xMaxElement.value = 1.0;
-yMinElement.value = -1.5;
-yMaxElement.value = 1.5;
+widthElement.value = "1000";
+heightElement.value = "1000";
+xMinElement.value = "-2.0";
+xMaxElement.value = "1.0";
+yMinElement.value = "-1.5";
+yMaxElement.value = "1.5";
 hueOptionElement.value = "red";
-maxIterationsElement.value = 30;
+maxIterationsElement.value = "30";
 
-const canvas = document.getElementById("canvas");
-const ctx = canvas.getContext("2d");
+const canvas = document.getElementById("canvas")! as HTMLCanvasElement;
+const ctx = canvas.getContext("2d")!;
 
 const space = Space.new();
 
@@ -40,6 +40,8 @@ function draw() {
         return HueOption.Green
       case "blue":
         return HueOption.Blue
+      default:
+        throw new Error(`Invalid hue option: ${hueOptionElement.value}`);
     }
   })();
   const maxIterations = parseInt(maxIterationsElement.value);
