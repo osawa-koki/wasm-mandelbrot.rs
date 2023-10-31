@@ -18,5 +18,5 @@ yarn start
 
 ```shell
 docker build -t my-image .
-docker run -d --rm --port 8000:80 --name my-container my-image
+docker run -d --rm -p 8000:80 --name my-container my-image
 ```
