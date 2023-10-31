@@ -2,7 +2,7 @@ FROM rust:1.73 as wasm-builder
 WORKDIR /src/
 RUN cargo install cargo-generate wasm-pack
 COPY ./ ./
-RUN wasm-pack build --release --target web --out-dir ./pkg/
+RUN wasm-pack build --release --out-dir ./pkg/
 
 FROM node:18 as web-builder
 WORKDIR /src/www/

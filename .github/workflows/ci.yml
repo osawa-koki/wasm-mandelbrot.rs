@@ -45,7 +45,7 @@ jobs:
       run: cargo install cargo-generate wasm-pack
       working-directory: ${{ env.cargo-directory }}
     - name: Build
-      run: wasm-pack build --target web --out-dir ./pkg/
+      run: wasm-pack build --out-dir ./pkg/
       working-directory: ${{ env.cargo-directory }}
     # ===== npm =====
     - name: Setup Node.js
