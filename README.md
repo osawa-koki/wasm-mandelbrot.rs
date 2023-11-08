@@ -2,6 +2,8 @@
 
 🪨🪨🪨 RustによるWebAssemblyでマンデルブロ集合を描画するサンプルです！  
 
+![成果物](./docs/images/fruit.gif)  
+
 ## 環境構築
 
 DevContainerに入り、以下のコマンドを実行します。  
